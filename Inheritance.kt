@@ -1,6 +1,7 @@
 fun main(){
     val squareCabin = SquareCabin(6)
     val roundHut = RoundHut(3)
+    val roundTower = RoundTower(4)
 
     with(squareCabin){
         println("Sqaure Cabin")
@@ -15,6 +16,14 @@ fun main(){
         println("Capacity : ${capacity}")
         println("Building Material : ${buildingMaterial}")
         println("Has Room? : ${hasRoom()}")
+        println()
+    }
+
+    with(roundTower) {
+        println("\nRound Tower")
+        println("Material: ${buildingMaterial}")
+        println("Capacity: ${capacity}")
+        println("Has room? ${hasRoom()}")
         println()
     }
 }
@@ -33,7 +42,12 @@ class SquareCabin(residents: Int) : Dwelling(residents){
     override val capacity = 6
 }
 
-class RoundHut(residents: Int) : Dwelling(residents){
+open class RoundHut(residents: Int) : Dwelling(residents){
     override val buildingMaterial = "Wood"
     override val capacity = 4
+}
+
+class RoundTower(residents: Int, val floors: Int = 2) : RoundHut(residents){
+    override val buildingMaterial = "Stone"
+    override val capacity = 4 * floors
 }
